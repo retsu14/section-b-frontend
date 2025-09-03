@@ -1,7 +1,12 @@
-import React from "react";
+import Logout from "@/components/Logout";
 
 const page = () => {
-  return <div>Welcome</div>;
+  return (
+    <div>
+      Welcome
+      <Logout />
+    </div>
+  );
 };
 
 export default page;

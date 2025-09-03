@@ -5,11 +5,14 @@ import { useRouter } from "next/navigation";
 
 const API = process.env.NEXT_PUBLIC_API_URL;
 
-const Login = () => {
+const Register = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    username: "",
+    firstname: "",
+    lastname: "",
   });
 
   const onChange = (e) => {
@@ -20,7 +23,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      await axios.post(`${API}/api/auth/login`, formData, {
+      await axios.post(`${API}/api/auth/register`, formData, {
         header: {
           "Content-type": "application/json",
         },
@@ -44,6 +47,32 @@ const Login = () => {
       <div className="bg-white shadow-md rounded-md p-4 w-full max-w-[400px]">
         <form onSubmit={handleSubmit} className="space-y-[20px]">
           <input
+            type="text"
+            placeholder="username"
+            name="username"
+            value={formData.username}
+            onChange={onChange}
+            className="h-[50px] w-full px-[16px] py-[14px] border border-gray-300 rounded-md focus:outline-none"
+          />
+
+          <input
+            type="text"
+            placeholder="FirstName"
+            name="firstname"
+            value={formData.firstname}
+            onChange={onChange}
+            className="h-[50px] w-full px-[16px] py-[14px] border border-gray-300 rounded-md focus:outline-none"
+          />
+          <input
+            type="text"
+            placeholder="LastName"
+            name="lastname"
+            value={formData.lastname}
+            onChange={onChange}
+            className="h-[50px] w-full px-[16px] py-[14px] border border-gray-300 rounded-md focus:outline-none"
+          />
+
+          <input
             type="email"
             placeholder="Email"
             name="email"
@@ -51,6 +80,7 @@ const Login = () => {
             onChange={onChange}
             className="h-[50px] w-full px-[16px] py-[14px] border border-gray-300 rounded-md focus:outline-none"
           />
+
           <input
             type="password"
             placeholder="Password"
@@ -64,7 +94,7 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-500 text-white text-center h-[50px] rounded-md text-[16px] font-bold"
           >
-            Login
+            Register
           </button>
         </form>
       </div>
@@ -72,4 +102,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
